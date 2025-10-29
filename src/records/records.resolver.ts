@@ -26,7 +26,7 @@ export class RecordsResolver {
     return this.recordsService.create(createRecordInput);
   }
 
-  @Query(() => [PaginatedServiceRecords], { name: 'serviceRecords' })
+  @Query(() => PaginatedServiceRecords, { name: 'serviceRecords' }) // Fixed
   findAll(
     @Args('page', { type: () => Int, defaultValue: 1 }) page: number,
     @Args('limit', { type: () => Int, defaultValue: 100 }) limit: number,
@@ -60,10 +60,5 @@ export class RecordsResolver {
   @ResolveReference()
   resolveReference(reference: { __typename: string; id: string }) {
     return this.recordsService.findOne(reference.id);
-  }
-
-  @ResolveField(() => Vehicle)
-  vehicle(@Parent() serviceRecord: ServiceRecord) {
-    return { __typename: 'Vehicle', vin: serviceRecord.vin };
   }
 }

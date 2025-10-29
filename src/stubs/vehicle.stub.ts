@@ -6,6 +6,6 @@ import { Directive, Field, ID, ObjectType } from '@nestjs/graphql';
 export class Vehicle {
   @Field()
   @Directive('@external')
-  vin: string;
+  vin: string; // vin- used to connect service records with vehicles stored in vehicle service
 
 }

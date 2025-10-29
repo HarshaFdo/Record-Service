@@ -31,7 +31,7 @@ type PaginatedServiceRecords {
 
 type Query {
   serviceRecord(id: String!): ServiceRecord!
-  serviceRecords(limit: Int! = 100, page: Int! = 1): [PaginatedServiceRecords!]!
+  serviceRecords(limit: Int! = 100, page: Int! = 1): PaginatedServiceRecords!
   serviceRecordsByVin(vin: String!): [ServiceRecord!]!
 }
 
@@ -58,5 +58,6 @@ input UpdateRecordInput {
 }
 
 type Vehicle {
+  serviceRecords: [ServiceRecord!]!
   vin: String!
 }
