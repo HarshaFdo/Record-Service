@@ -1,0 +1,62 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateRecordInput {
+  cost: Float!
+  description: String!
+  mechanic_name: String!
+  service_date: DateTime!
+  service_type: String!
+  vin: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createRecord(createRecordInput: CreateRecordInput!): ServiceRecord!
+  removeRecord(id: String!): ServiceRecord!
+  updateRecord(id: String!, updateRecordInput: UpdateRecordInput!): ServiceRecord!
+}
+
+type PaginatedServiceRecords {
+  data: [ServiceRecord!]!
+  page: Int!
+  total: Int!
+  totalPages: Int!
+}
+
+type Query {
+  serviceRecord(id: String!): ServiceRecord!
+  serviceRecords(limit: Int! = 100, page: Int! = 1): [PaginatedServiceRecords!]!
+  serviceRecordsByVin(vin: String!): [ServiceRecord!]!
+}
+
+type ServiceRecord {
+  cost: Float!
+  created_at: DateTime!
+  description: String!
+  id: ID!
+  mechanic_name: String!
+  service_date: DateTime!
+  service_type: String!
+  updated_at: DateTime!
+  vehicle: Vehicle
+  vin: String!
+}
+
+input UpdateRecordInput {
+  cost: Float
+  description: String
+  mechanic_name: String
+  service_date: DateTime
+  service_type: String
+  vin: String
+}
+
+type Vehicle {
+  vin: String!
+}
