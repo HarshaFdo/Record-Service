@@ -5,7 +5,6 @@ import {
   Args,
   Int,
   ResolveReference,
-  ResolveField,
   Parent,
 } from '@nestjs/graphql';
 import { RecordsService } from './records.service';
@@ -13,7 +12,6 @@ import { CreateRecordInput } from './dto/create-record.input';
 import { UpdateRecordInput } from './dto/update-record.input';
 import { ServiceRecord } from 'src/entities/records-service.entity';
 import { PaginatedServiceRecords } from './dto/paginated-result.dto';
-import { Vehicle } from 'src/stubs/vehicle.stub';
 
 @Resolver(() => ServiceRecord)
 export class RecordsResolver {
