@@ -52,10 +52,16 @@ export class RecordsService {
   }
 
   async findByVin(vin: string): Promise<ServiceRecord[]> {
-    return this.recordRepository.find({
+    console.log(`Fetching service records for VIN: ${vin}`);
+
+    const records = await this.recordRepository.find({
       where: { vin },
       order: { service_date: 'DESC' },
     });
+
+    console.log(`Found ${records.length} service record(s) for VIN: ${vin}`);
+    return records;
+
   }
 
   async update(id: string, input: UpdateRecordInput) {
@@ -77,7 +83,7 @@ export class RecordsService {
 
     delete record.vehicle;
     console.log(`Current service record data:`, record);
-    
+
     await this.recordRepository.delete(id);
     console.log(`Service record #${id} deleted successfully.`);
     return record;
