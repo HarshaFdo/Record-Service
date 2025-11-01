@@ -14,8 +14,14 @@ export class RecordsService {
   ) {}
 
   async create(input: CreateRecordInput): Promise<ServiceRecord> {
+    console.log('Creating service record with input:', input);
+
     const record = this.recordRepository.create(input);
-    return this.recordRepository.save(record);
+    const savedRecord = await this.recordRepository.save(record);
+
+    delete savedRecord.vehicle;
+    console.log('Service record saved successfully:', savedRecord);
+    return savedRecord;
   }
 
   async findAll(
@@ -53,14 +59,27 @@ export class RecordsService {
   }
 
   async update(id: string, input: UpdateRecordInput) {
+    console.log(`Updating service record #${id} with input:`, input);
     const record = await this.findOne(id);
+
+    delete record.vehicle;
+    console.log(`Current service record data:`, record);
+
     Object.assign(record, input);
+    console.log(`Saving updated service record to the database:`, record);
+
     return this.recordRepository.save(record);
   }
 
   async remove(id: string): Promise<ServiceRecord> {
+    console.log(`Deleting service record #${id}`);
     const record = await this.findOne(id);
+
+    delete record.vehicle;
+    console.log(`Current service record data:`, record);
+    
     await this.recordRepository.delete(id);
+    console.log(`Service record #${id} deleted successfully.`);
     return record;
   }
 }
