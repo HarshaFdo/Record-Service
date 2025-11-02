@@ -62,17 +62,12 @@ export class RecordsResolver {
     return this.recordsService.findOne(reference.id);
   }
 
-   @ResolveField(() => Vehicle, { nullable: true })
+  @ResolveField(() => Vehicle, { nullable: true })
   async vehicle(@Parent() serviceRecord: ServiceRecord): Promise<Vehicle | null> {
-    console.log('ServiceRecord ID:', serviceRecord.id);
-    console.log('VIN:', serviceRecord.vin);
-    
-    if (!serviceRecord.vin) {
-      console.log('No VIN found');
+      if (!serviceRecord.vin) {
       return null;
     }
     
-    console.log('Returning vehicle reference for VIN:', serviceRecord.vin);
     return { __typename: 'Vehicle', vin: serviceRecord.vin } as Vehicle;
   }
 }
