@@ -5,6 +5,7 @@ import {
   Args,
   Int,
   ResolveReference,
+  ResolveField,
   Parent,
 } from '@nestjs/graphql';
 import { RecordsService } from './records.service';
@@ -12,6 +13,7 @@ import { CreateRecordInput } from './dto/create-record.input';
 import { UpdateRecordInput } from './dto/update-record.input';
 import { ServiceRecord } from 'src/entities/records-service.entity';
 import { PaginatedServiceRecords } from './dto/paginated-result.dto';
+import { Vehicle } from '../stubs/vehicle.stub'; 
 
 @Resolver(() => ServiceRecord)
 export class RecordsResolver {
@@ -58,5 +60,19 @@ export class RecordsResolver {
   @ResolveReference()
   resolveReference(reference: { __typename: string; id: string }) {
     return this.recordsService.findOne(reference.id);
+  }
+
+   @ResolveField(() => Vehicle, { nullable: true })
+  async vehicle(@Parent() serviceRecord: ServiceRecord): Promise<Vehicle | null> {
+    console.log('ServiceRecord ID:', serviceRecord.id);
+    console.log('VIN:', serviceRecord.vin);
+    
+    if (!serviceRecord.vin) {
+      console.log('No VIN found');
+      return null;
+    }
+    
+    console.log('Returning vehicle reference for VIN:', serviceRecord.vin);
+    return { __typename: 'Vehicle', vin: serviceRecord.vin } as Vehicle;
   }
 }
