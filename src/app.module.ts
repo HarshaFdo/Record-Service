@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { RecordsModule } from './records/records.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServiceRecord } from './entities/records-service.entity';
@@ -40,7 +38,7 @@ import { join } from 'path';
     }),
     RecordsModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
