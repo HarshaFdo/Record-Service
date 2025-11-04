@@ -26,7 +26,7 @@ export class RecordsResolver {
     return this.recordsService.create(createRecordInput);
   }
 
-  @Query(() => PaginatedServiceRecords, { name: 'serviceRecords' }) // Fixed
+  @Query(() => PaginatedServiceRecords, { name: 'serviceRecords' }) 
   findAll(
     @Args('page', { type: () => Int, defaultValue: 1 }) page: number,
     @Args('limit', { type: () => Int, defaultValue: 100 }) limit: number,
