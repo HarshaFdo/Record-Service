@@ -65,7 +65,7 @@ export class RecordsResolver {
   @ResolveField(() => Vehicle, { nullable: true })
   async vehicle(@Parent() serviceRecord: ServiceRecord): Promise<Vehicle | null> {
       if (!serviceRecord.vin) {
-      return null;
+        return null;
     }
     
     return { __typename: 'Vehicle', vin: serviceRecord.vin } as Vehicle;
