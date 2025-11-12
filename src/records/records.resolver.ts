@@ -62,6 +62,7 @@ export class RecordsResolver {
     return this.recordsService.findOne(reference.id);
   }
 
+  // If needed to resolve Vehicle from ServiceRecord can uncomment this.
   // @ResolveField(() => Vehicle, { nullable: true })
   // async vehicle(@Parent() serviceRecord: ServiceRecord): Promise<Vehicle | null> {
   //     if (!serviceRecord.vin) {
