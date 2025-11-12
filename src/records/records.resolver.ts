@@ -62,12 +62,12 @@ export class RecordsResolver {
     return this.recordsService.findOne(reference.id);
   }
 
-  @ResolveField(() => Vehicle, { nullable: true })
-  async vehicle(@Parent() serviceRecord: ServiceRecord): Promise<Vehicle | null> {
-      if (!serviceRecord.vin) {
-        return null;
-    }
+  // @ResolveField(() => Vehicle, { nullable: true })
+  // async vehicle(@Parent() serviceRecord: ServiceRecord): Promise<Vehicle | null> {
+  //     if (!serviceRecord.vin) {
+  //       return null;
+  //   }
     
-    return { __typename: 'Vehicle', vin: serviceRecord.vin } as Vehicle;
-  }
+  //   return { __typename: 'Vehicle', vin: serviceRecord.vin } as Vehicle;
+  // }
 }
