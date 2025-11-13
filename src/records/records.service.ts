@@ -11,7 +11,7 @@ export class RecordsService {
   private readonly logger = new Logger(RecordsService.name);
 
   constructor(
-    @InjectRepository(ServiceRecord, 'serviceConnection')
+    @InjectRepository(ServiceRecord)
     private readonly recordRepository: Repository<ServiceRecord>,
   ) {}
 

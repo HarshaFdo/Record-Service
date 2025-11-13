@@ -14,14 +14,13 @@ import { join } from 'path';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      name: 'serviceConnection',
       type: 'postgres',
       host: 'localhost',
       port: 5432,
       username: 'postgres',
       password: 'postgres',
       database: 'service_records_db',
-      entities: [ServiceRecord],
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
       // logging: true, // sql in console
     }),

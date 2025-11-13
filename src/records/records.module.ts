@@ -7,7 +7,7 @@ import { VehicleFieldsResolver } from './vehicle-fields.resolver';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ServiceRecord], 'serviceConnection')
+    TypeOrmModule.forFeature([ServiceRecord])
   ],
   providers: [RecordsResolver, VehicleFieldsResolver, RecordsService],
   exports: [RecordsService]
